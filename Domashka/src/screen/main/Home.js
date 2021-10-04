@@ -34,12 +34,12 @@ const Home = ({ newUser, selectedUser, changedUser, enabled }) => {
     }
     return (
         <div className='usersContainer'>
-            <input placeholder="Name" onChange={getName} value={selectedUser[0]?.name}></input>
-            <input placeholder="Surname" onChange={getSurname} defaultValue={selectedUser[0]?.surName}></input>
-            <input placeholder="Age" onChange={getAge} defaultValue={selectedUser[0]?.age}></input>
-            <input placeholder="@mail" onChange={getMail} defaultValue={selectedUser[0]?.mail}></input>
-            <input placeholder="Login" onChange={getLogin} defaultValue={selectedUser[0]?.login}></input>
-            <select onChange={getGender} defaultValue={selectedUser[0]?.gender}>
+            <input placeholder="Name" onChange={getName} defaultValue={selectedUser[0]?.name || name}></input>
+            <input placeholder="Surname" onChange={getSurname} defaultValue={selectedUser[0]?.surName || surName}></input>
+            <input placeholder="Age" onChange={getAge} defaultValue={selectedUser[0]?.age || age}></input>
+            <input placeholder="@mail" onChange={getMail} defaultValue={selectedUser[0]?.mail || mail}></input>
+            <input placeholder="Login" onChange={getLogin} defaultValue={selectedUser[0]?.login || login}></input>
+            <select onChange={getGender} defaultValue={selectedUser[0]?.gender || gender}>
                 <option>Select</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -54,7 +54,13 @@ const Home = ({ newUser, selectedUser, changedUser, enabled }) => {
                     mail,
                     gender,
                     login
-                }), alert('User is Added')} }>Register</button>
+                }); alert('User is Added');
+                setName('');
+                setSurName("");
+                setAge("");
+                setGender("");
+                setMail("");
+                setLogin("");} }>Register</button>
                 <button className='saveButton' disabled={enabled} onClick={() => changedUser({
                     id: selectedUser[0].id,
                     name,
